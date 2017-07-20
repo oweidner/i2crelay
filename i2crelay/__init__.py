@@ -1,17 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 #
-# Creation:    07.06.2015
-# Last Update: 18.02.2017
+# Creation:    06.06.2017
+# Last Update: 21.07.2017
 #
-# Copyright (c) 2015-2017 by Georg Kainzbauer <http://www.gtkdb.de>
+# Copyright (c) 2017 by Ole Weidner <https://oleweidner.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-#
 
 # import required modules
 import smbus2
@@ -98,7 +96,6 @@ def main():
             time.sleep(0.5)
             r1.switch_off(relay)
             time.sleep(0.5)
-
 
     except KeyboardInterrupt:
         print("Execution stopped by user")
