@@ -14,7 +14,7 @@
 #
 
 # import required modules
-import smbus
+import smbus2
 import time
 
 class I2CRelay:
@@ -22,17 +22,52 @@ class I2CRelay:
 
     def __init__(self, i2c_bus, i2c_addr):
 
+        # The initial state of the relay board is all off
+        self._state = 0b11111111
+
         self._i2c_bus = i2c_bus
         self._i2c_addr = i2c_addr
 
         # Create a new I2C object
-        self._i2c = smbus.SMBus(i2c_bus)
+        self._i2c = smbus2.SMBus(i2c_bus)
 
-    def all_off(self):
-        self._i2c.write_byte(self._i2c_addr, 0xFF)
+    def _commit_state (self):
+        """(private) write the new state to the I2C bus.
+        """
+        self._i2c.write_byte(self._i2c_addr, self._state)
 
-    def all_on(self):
-        self._i2c.write_byte(self._i2c_addr, 0x00)
+    def get_state(self):
+        """Return the current state in binary format.
+        """
+        return bin(self._state)
+
+    def switch_all_off(self):
+        """Switch all realys off.
+        """
+        self._state = 0b11111111
+        self._commit_state()
+
+    def switch_all_on(self):
+        """Switch all realys on.
+        """
+        self._state = 0b00000000
+        self._commit_state()
+
+    def switch_on(self, relay_number):
+        """Switch a specific relay to on.
+           TODO: make sure that relay_number is valid
+        """
+        # set the relay_number-th bit to 0
+        self._state &= ~(1 << relay_number)
+        self._commit_state()
+
+    def switch_off(self, relay_number):
+        """Switch a specific relay to on.
+           TODO: make sure that relay_number is valid
+        """
+        # set the relay_number-th bit to 1
+        self._state |= (1 << relay_number)
+        self._commit_state()
 
 def main():
 
@@ -48,39 +83,22 @@ def main():
     try:
         r1 = I2CRelay(I2C_BUS, I2C_ADDR)
 
-        r1.all_off()
+        r1.switch_all_off()
+        time.sleep(1.0)
 
-        while True:
-            time.sleep(1.0)
-            r1.all_on()
-            time.sleep(1.0)
-            r1.all_off()
+        r1.switch_all_on()
+        time.sleep(1.0)
+
+        r1.switch_all_off()
+        time.sleep(1.0)
+
+        for relay in range(0, 8):
+            print("Switching relay {}".format(relay+1))
+            r1.switch_on(relay)
+            time.sleep(0.5)
+            r1.switch_off(relay)
+            time.sleep(0.5)
+
 
     except KeyboardInterrupt:
         print("Execution stopped by user")
-
-#     try:
-#         # init I2C bus
-#         i2c = smbus.SMBus(I2C_BUS)
-#
-#         all_off(i2c, I2C_ADDR)
-#
-#         while True:
-#             time.sleep(1.0)
-#             all_off(i2c, I2C_ADDR)
-#             time.sleep(1.0)
-#             all_on(i2c, I2C_ADDR)
-#
-# #    for i in range (0, 8):
-# #      # wait 1000ms
-# #      time.sleep(0.1)
-# #
-# #      # send output data to PCF8574
-# #      i2c.write_byte(I2C_ADDR, 0x0)
-# #      print(output)
-# #
-# #      # shift the output variable
-# #      output = output << 1
-#
-#     except KeyboardInterrupt:
-#         print("Execution stopped by user")
