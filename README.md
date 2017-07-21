@@ -8,6 +8,10 @@ This library was designed with the following hardware in mind:
 - PCF8574 I2C I/O Expansion Board (http://a.co/bdogwFe)
 - SainSmart 8-Channel Relay Module (http://a.co/48AtFQ6)
 
+You can solder it together into a single unit:
+
+[![Relay Board](https://raw.githubusercontent.com/oweidner/i2crelay/media/img/relay_small.jpeg)](https://raw.githubusercontent.com/oweidner/i2crelay/media/img/relay_fullsize.jpg)
+
 ## Installation
 
 To install the latest version from GitHub:
@@ -18,7 +22,7 @@ To install the latest version from GitHub:
 
 ## Example
 
-    # define I2C bus
+    # define I2C bus type
     # 0: Raspberry Pi Model B Rev 1.0
     # 1: Raspberry Pi Model B Rev 2.0, Model A, Model B+, Model A+, Raspberry Pi 2 Model B and  Raspberry Pi 3 Model B
     I2C_BUS = 1
@@ -44,7 +48,7 @@ To install the latest version from GitHub:
 
 The code above should do something like this:
 
-![relay_test](http://i.makeagif.com/media/7-21-2017/vuVi6P.gif)
+![relay_test](https://raw.githubusercontent.com/oweidner/i2crelay/media/vid/relay_test.gif)
 
 ## I2C Device Permissions
 
