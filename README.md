@@ -22,7 +22,7 @@ To install the latest version from GitHub:
 
 ## Command-Line Tool
 
-    i2crelay --i2c-type=1 --i2c-addr=0x20 --relay=1 on
+    i2crelay --i2c-type=1 --i2c-addr=0x20 0:on 1:off 2:on 8:toggle
 
 ## API Example
 
