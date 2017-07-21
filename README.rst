@@ -1,13 +1,11 @@
-I2CRelay: A library to control 8-channel relay boards via PCF8574 I2C
-=====================================================================
+I2CRelay: A library to control relay boards via the PCF8574 I :2: C I/O extender
+============================================================================
 
-WORK IN PROGRESS - Not really usable yet.
+I2CRelay is a small Python library that provides a simple API for controlling
+multiple relay cards connected to a PCF8574 I2C I/O expander.
 
-I2C is a small Python library that provides a simple API for controlling
-8-channel relay cards via a PCF8574 I2C I/O expander.
-
-Why? Because controlling relay boards directly via the GPIO pins of a
-Raspberry PI requires, well, a lot of pins. With I2C we can control multiple
+Why? Because controlling relay boards directly via the I/O pins of, e.g., a
+Raspberry PI, requires a lot of pins. With I :2: C we can control multiple
 relay cards with just 2 GPIO pins.
 
 Hardware
