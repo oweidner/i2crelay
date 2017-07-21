@@ -1,4 +1,4 @@
-# I2CRelay: A library and command line tool to control PCF8574 I2C relay boards
+# I2CRelay: A Python library and command line tool to control PCF8574 I2C relay boards
 
 I2CRelay is a small Python library that provides a simple API for controlling
 multiple relay boards that are connected to a PCF8574 I2C I/O expander.
