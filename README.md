@@ -8,7 +8,7 @@ This library was tested with the following hardware:
 - PCF8574 I2C I/O Expansion Board (http://a.co/bdogwFe)
 - SainSmart 8-Channel Relay Module (http://a.co/48AtFQ6)
 
-You can solder those together into a single unit like this:
+You can solder these into a single unit like this:
 
 [![Relay Board](https://raw.githubusercontent.com/oweidner/i2crelay/media/img/relay_small.jpeg)](https://raw.githubusercontent.com/oweidner/i2crelay/media/img/relay_fullsize.jpg)
 
