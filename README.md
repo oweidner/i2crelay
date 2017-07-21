@@ -22,7 +22,21 @@ To install the latest version from GitHub:
 
 ## Command-Line Tool
 
-    i2crelay --i2c-type=1 --i2c-addr=0x20 0:on 1:off 2:on 8:toggle
+Together with the Python module installs the `i2crelay` command line tool:
+
+    Usage: i2crelay [OPTIONS] [CMDS]...
+
+      Control a PCF8574 I2C relay board.
+
+    Options:
+      --i2c-type INTEGER  The I2C bus type (0 or 1)
+      --i2c-addr TEXT     The I2C device address, e.g. 0x20
+      --relay INTEGER     The relay to switch (0..8) on or off
+      --help              Show this message and exit.
+      
+ For example, run this command to switch on relay 1 and 2, switch off relay 3 and toggle relay 8:
+
+    i2crelay --i2c-type=1 --i2c-addr=0x20 1:on 3:off 2:on 8:toggle
 
 ## API Example
 
@@ -56,7 +70,33 @@ The code above should result in something like this:
 
 ![relay_test](https://raw.githubusercontent.com/oweidner/i2crelay/media/vid/relay_test.gif)
 
-## I2C Device Permissions
+## I2C Device Setup
+
+### Bus and Device Numbers
+
+On Linux you can use the `i2cdetect` tool to figure out bus and device numbers:
+
+To find out the I2C bus number, run:
+
+    i2cdetect -l
+    
+    i2c-1	i2c       	bcm2835 I2C adapter             	I2C adapter
+    
+To find out the I2C device number, run:
+
+    i2cdetect -y 1
+    
+         0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+    00:          -- -- -- -- -- -- -- -- -- -- -- -- --
+    10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    20: 20 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    70: -- -- -- -- -- -- -- --
+
+### Device Permissions
 
 The user running the scripts needs access to the i2c devices in the Linux
 device tree. Instead of running the scripts as root you can add your user to the
