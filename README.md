@@ -16,7 +16,7 @@ You can solder those together into a single unit like this:
 
 To install the latest version from GitHub:
 
-    git clone https://github.com/oweidner/i2crelay.git
+    git clone -b master --single-branch https://github.com/oweidner/i2crelay.git
     cd i2crelay
     pip install --upgrade .
 
@@ -61,3 +61,10 @@ The code above should result in something like this:
 The user running the scripts needs access to the i2c devices in the Linux
 device tree. Instead of running the scripts as root you can add your user to the
 i2c group.
+
+## License
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
