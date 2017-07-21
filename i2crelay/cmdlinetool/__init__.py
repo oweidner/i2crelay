@@ -11,32 +11,32 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 
-def main():
+from i2crelay import I2CRelay
 
-    from i2crelay import I2CRelay
-    import time
+import click
 
-    I2C_ADDR = 0x20
-    I2C_BUS = 1
+@click.command()
+@click.option('--i2c-type', type=int, default=1,    help='The I2C bus type (0 or 1)')
+@click.option('--i2c-addr', type=str, default=0x20, help='The I2C device address, e.g. 0x20')
+@click.option('--relay',    type=int,               help='The relay to switch (0..8) on or off')
+@click.argument('cmd',      type=str,               )
+def main(i2c_type, i2c_addr, relay, cmd):
+    """Control a PCF8574 I2C relay board.
+    """
+
+    # Convert string to hex
+    i2c_addr = int(i2c_addr, 16)
+
 
     try:
-        r1 = I2CRelay(I2C_BUS, I2C_ADDR)
+        r1 = I2CRelay(i2c_type, i2c_addr)
 
-        r1.switch_all_off()
-        time.sleep(1.0)
-
-        r1.switch_all_on()
-        time.sleep(1.0)
-
-        r1.switch_all_off()
-        time.sleep(1.0)
-
-        for relay in range(0, 8):
-            print("Switching relay {}".format(relay+1))
+        if cmd.lower() == "on":
             r1.switch_on(relay)
-            time.sleep(0.5)
+        elif cmd.lower() == "off":
             r1.switch_off(relay)
-            time.sleep(0.5)
+        else:
+            raise TypeError("Unknown command: %s", cmd)
 
     except KeyboardInterrupt:
         print("Execution stopped by user")

@@ -1,14 +1,14 @@
-# I2CRelay: A library to control relay boards via the PCF8574 I2C I/O extender
+# I2CRelay: A library and command line tool to control PCF8574 I2C relay boards
 
 I2CRelay is a small Python library that provides a simple API for controlling
-multiple relay boards connected to a PCF8574 I2C I/O expander.
+multiple relay boards that are connected to a PCF8574 I2C I/O expander.
 
-This library was designed with the following hardware in mind:
+This library was tested with the following hardware:
 
 - PCF8574 I2C I/O Expansion Board (http://a.co/bdogwFe)
 - SainSmart 8-Channel Relay Module (http://a.co/48AtFQ6)
 
-You can solder it together into a single unit:
+You can solder those together into a single unit like this:
 
 [![Relay Board](https://raw.githubusercontent.com/oweidner/i2crelay/media/img/relay_small.jpeg)](https://raw.githubusercontent.com/oweidner/i2crelay/media/img/relay_fullsize.jpg)
 
@@ -20,7 +20,13 @@ To install the latest version from GitHub:
     cd i2crelay
     pip install --upgrade .
 
-## Example
+## Command-Line Tool
+
+    i2crelay --i2c-type=1 --i2c-addr=0x20 --relay=1 on
+
+## API Example
+
+    from i2crelay import I2CRelay
 
     # define I2C bus type
     # 0: Raspberry Pi Model B Rev 1.0
@@ -46,12 +52,12 @@ To install the latest version from GitHub:
         r1.switch_off(relay)
         time.sleep(0.5)
 
-The code above should do something like this:
+The code above should result in something like this:
 
 ![relay_test](https://raw.githubusercontent.com/oweidner/i2crelay/media/vid/relay_test.gif)
 
 ## I2C Device Permissions
 
 The user running the scripts needs access to the i2c devices in the Linux
-device tree. Instead of running the code as root you can add your user to the
+device tree. Instead of running the scripts as root you can add your user to the
 i2c group.
