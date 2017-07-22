@@ -1,8 +1,29 @@
-#!/usr/bin/python
-
-
-# Toggle a relay:
-# curl -H "Content-Type: application/json" -X PUT -d '{"state":"toggle"}' localhost:5000/api/relay/1
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+# Creation:    06.06.2017
+# Last Update: 23.07.2017
+#
+# Copyright (c) 2017 Codewerft UG (haftungsbeschränkt) <https://codewerft.net>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# How to run this
+# ===============
+#
+# 1. Install Python Flask:
+# pip install Flask
+#
+# 2. Run the server
+# python relay_server.py
+#
+# 3. Call the API
+#
+# - Toggle a relay:
+#   curl -H "Content-Type: application/json" -X PUT -d '{"state":"toggle"}' localhost:5000/api/relay/1
 
 from flask import Flask, jsonify, request, g
 from i2crelay import I2CRelayBoard
