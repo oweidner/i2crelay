@@ -21,7 +21,6 @@
 # python relay_server.py
 #
 # 3. Call the API
-#
 # - Toggle a relay:
 #   curl -H "Content-Type: application/json" -X PUT -d '{"state":"toggle"}' localhost:5000/api/relay/1
 
