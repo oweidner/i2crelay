@@ -16,10 +16,10 @@ from i2crelay import I2CRelay
 import click
 
 @click.command()
-@click.option('--i2c-type',  required=True, type=int, help='The I2C bus type (0 or 1)')
+@click.option('--i2c-bus',  required=True, type=int, help='The I2C bus (0 or 1)')
 @click.option('--i2c-addr',  required=True, type=str, help='The I2C device address, e.g. 0x20')
 @click.argument('cmds',      nargs=-1)
-def main(i2c_type, i2c_addr, cmds):
+def main(i2c_bus, i2c_addr, cmds):
     """Control a PCF8574 I2C relay board.
     """
 
@@ -31,7 +31,7 @@ def main(i2c_type, i2c_addr, cmds):
         validate_command(c)
 
     try:
-        r1 = I2CRelay(i2c_type, i2c_addr)
+        r1 = I2CRelay(i2c_bus, i2c_addr)
 
         for c in cmds:
             n,o = c.split(":")
