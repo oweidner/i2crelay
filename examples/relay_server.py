@@ -14,14 +14,14 @@
 # How to run this
 # ===============
 #
-# 1. Install Python Flask:
-# pip install Flask
+#   1. Install Python Flask:
+#   pip install Flask
 #
-# 2. Run the server
-# python relay_server.py
+#   2. Run the server
+#   python relay_server.py
 #
-# 3. Call the API
-# - Toggle a relay:
+#   3. Call the API
+#   Toggle a relay:
 #   curl -H "Content-Type: application/json" -X PUT -d '{"state":"toggle"}' localhost:5000/api/relay/1
 
 from flask import Flask, jsonify, request, g
