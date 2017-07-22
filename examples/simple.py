@@ -38,12 +38,13 @@ if __name__ == "__main__":
         r1.switch_all_off()
         time.sleep(1.0)
 
-        for relay in range(0, 8):
-            print("Switching relay {}".format(relay+1))
-            r1.switch_on(relay)
-            time.sleep(0.5)
-            r1.switch_off(relay)
-            time.sleep(0.5)
+	for i in range(0, 10):
+            for relay in range(0, 8):
+                print("Switching relay {}".format(relay+1))
+                r1.switch_on(relay)
+                time.sleep(0.1)
+                r1.switch_off(relay)
+                time.sleep(0.1)
 
     except KeyboardInterrupt:
         print("Execution stopped by user")
