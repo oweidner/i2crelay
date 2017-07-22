@@ -11,7 +11,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 
-from i2crelay import I2CRelay
+from i2crelay import I2CRelayBoard
 import time
 
 # Define I2C bus type
@@ -27,7 +27,7 @@ I2C_ADDR = 0x20
 if __name__ == "__main__":
 
     try:
-        r1 = I2CRelay(I2C_BUS, I2C_ADDR)
+        r1 = I2CRelayBoard(I2C_BUS, I2C_ADDR)
 
         r1.switch_all_off()
         time.sleep(1.0)
@@ -39,8 +39,8 @@ if __name__ == "__main__":
         time.sleep(1.0)
 
 	for i in range(0, 10):
-            for relay in range(0, 8):
-                print("Switching relay {}".format(relay+1))
+            for relay in range(1, 9):
+                print("Switching relay {}".format(relay))
                 r1.switch_on(relay)
                 time.sleep(0.1)
                 r1.switch_off(relay)

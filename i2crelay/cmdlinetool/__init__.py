@@ -11,7 +11,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 
-from i2crelay import I2CRelay
+from i2crelay import I2CRelayBoard
 
 import click
 
@@ -31,7 +31,7 @@ def main(i2c_bus, i2c_addr, cmds):
         validate_command(c)
 
     try:
-        r1 = I2CRelay(i2c_bus, i2c_addr)
+        r1 = I2CRelayBoard(i2c_bus, i2c_addr)
 
         for c in cmds:
             n,o = c.split(":")
@@ -39,6 +39,8 @@ def main(i2c_bus, i2c_addr, cmds):
                 r1.switch_on(int(n))
             elif o.lower() == "off":
                 r1.switch_off(int(n))
+            elif o.lower() == "toggle":
+                r1.toggle(int(n))
 
     except KeyboardInterrupt:
         print("Execution stopped by user")

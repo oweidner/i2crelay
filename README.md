@@ -39,7 +39,7 @@ Together with the Python module installs the `i2crelay` command line tool:
 
 ## API Example
 
-    from i2crelay import I2CRelay
+    from i2crelay import I2CRelayBoard
 
     # define I2C bus type
     # 0: Raspberry Pi Model B Rev 1.0
@@ -50,7 +50,7 @@ Together with the Python module installs the `i2crelay` command line tool:
     # depends on the hardware pins A0 - A2
     I2C_ADDR = 0x20
 
-    r1 = I2CRelay(I2C_BUS, I2C_ADDR)
+    r1 = I2CRelayBoard(I2C_BUS, I2C_ADDR)
 
     r1.switch_all_on()
     time.sleep(1.0)
@@ -58,8 +58,8 @@ Together with the Python module installs the `i2crelay` command line tool:
     r1.switch_all_off()
     time.sleep(1.0)
 
-    for relay in range(0, 8):
-        print("Switching relay {}".format(relay+1))
+    for relay in range(1, 9):
+        print("Switching relay {}".format(relay))
         r1.switch_on(relay)
         time.sleep(0.5)
         r1.switch_off(relay)
