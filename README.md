@@ -29,7 +29,7 @@ Together with the Python module installs the `i2crelay` command line tool:
       Control a PCF8574 I2C relay board.
 
     Options:
-      --i2c-bus INTEGER   The I2C bus  (0 or 1)  [required]
+      --i2c-bus  INTEGER  The I2C bus  (0 or 1)  [required]
       --i2c-addr TEXT     The I2C device address, e.g. 0x20  [required]
       --help              Show this message and exit.
       
