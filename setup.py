@@ -25,18 +25,18 @@ setup(
     # https://packaging.python.org/en/latest/single_source_version.html
     version='0.1.0',
 
-    description='A small library to control an 8-channel relay board via I2C',
+    description='A library and command line tool to control PCF8574 I2C relay boards',
     long_description=long_description,
 
     # The project's main homepage.
     url='https://github.com/oweidner/i2crelay',
 
     # Author details
-    author='Ole Weidner',
-    author_email='ole.weidner@protonmail.ch',
+    author='Ole Weidner, Codewerft UG (haftungsbeschränkt)',
+    author_email='ole.weidner@codewerft.net',
 
     # Choose your license
-    license='MIT',
+    license='GPL-2.0',
 
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -64,7 +64,7 @@ setup(
     ],
 
     # What does your project relate to?
-    keywords='sample setuptools development',
+    keywords='relay i2c pcf8574 raspberry automation',
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().

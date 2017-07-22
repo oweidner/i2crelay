@@ -4,7 +4,9 @@
 # Creation:    06.06.2017
 # Last Update: 21.07.2017
 #
-# Copyright (c) 2017 by Ole Weidner <https://oleweidner.com>
+# <https://codewerft.net>
+#
+# Copyright (c) 2017 Codewerft UG (haftungsbeschränkt)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

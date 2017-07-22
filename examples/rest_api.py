@@ -4,7 +4,9 @@
 # Creation:    06.06.2017
 # Last Update: 23.07.2017
 #
-# Copyright (c) 2017 Codewerft UG (haftungsbeschränkt) <https://codewerft.net>
+# <https://codewerft.net>
+#
+# Copyright (c) 2017 Codewerft UG (haftungsbeschränkt)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,7 +24,8 @@
 #
 #   3. Call the API
 #   Toggle a relay:
-#   curl -H "Content-Type: application/json" -X PUT -d '{"state":"toggle"}' localhost:5000/api/relay/1
+#   curl -H "Content-Type: application/json" -X PUT \
+#        -d '{"state":"toggle"}' localhost:5000/api/relay/1
 
 from flask import Flask, jsonify, request, g
 from i2crelay import I2CRelayBoard
@@ -62,4 +65,3 @@ def switch_relay(relay_id):
 if __name__ == '__main__':
 
     app.run(debug=True, host='0.0.0.0')
-
