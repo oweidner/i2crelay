@@ -71,9 +71,9 @@ The code above should result in something like this:
 
 ### Other Examples
 
-    The `examples` directory contains a few additional examples:
+The `examples` directory contains a few additional examples:
 
-    * [rest_api.py](examples/rest_api.py) - A simple REST API example with Flask
+* [rest_api.py](examples/rest_api.py) - A simple REST API example with Flask
 
 ## I2C Device Setup
 
