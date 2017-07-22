@@ -1,5 +1,9 @@
 #!/usr/bin/python
 
+
+# Toggle a relay:
+# curl -H "Content-Type: application/json" -X PUT -d '{"state":"toggle"}' localhost:5000/api/relay/1
+
 from flask import Flask, jsonify, request, g
 from i2crelay import I2CRelayBoard
 
