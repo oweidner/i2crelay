@@ -3,3 +3,7 @@ include LICENSE.txt
 
 # Include the data files
 recursive-include data *
+
+include tox.ini
+recursive-include examples *.py
+recursive-include tests *.py

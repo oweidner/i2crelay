@@ -27,7 +27,7 @@
 #   curl -H "Content-Type: application/json" -X PUT \
 #        -d '{"state":"toggle"}' localhost:5000/api/relay/1
 
-from flask import Flask, jsonify, request, g
+from flask import Flask, jsonify, request, g, abort
 from i2crelay import I2CRelayBoard
 
 I2C_BUS = 1
@@ -35,16 +35,19 @@ I2C_ADDR = 0x20
 
 app = Flask(__name__)
 
+
 def get_relay():
     relay = getattr(g, '_relay', None)
     if relay is None:
         relay = g._relay = I2CRelayBoard(I2C_BUS, I2C_ADDR)
     return relay
 
+
 @app.route('/api/relay/<int:relay_id>', methods=['GET'])
 def get_relay_state(relay_id):
     state = get_relay().is_on(relay_id)
     return jsonify({'relay': relay_id, 'state': state})
+
 
 @app.route('/api/relay/<int:relay_id>', methods=['PUT'])
 def switch_relay(relay_id):
@@ -61,6 +64,7 @@ def switch_relay(relay_id):
             abort(400)
     state = get_relay().is_on(relay_id)
     return jsonify({'relay': relay_id, 'state': state})
+
 
 if __name__ == '__main__':
 

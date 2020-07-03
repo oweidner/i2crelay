@@ -15,6 +15,7 @@
 
 import smbus2
 
+
 class I2CRelayBoard:
     """Represents an PCF8574 I2C relay board"""
 
@@ -29,7 +30,7 @@ class I2CRelayBoard:
         # Read the initial state of the PCF8574
         self._state = self._i2c.read_byte(self._i2c_addr)
 
-    def _commit_state (self):
+    def _commit_state(self):
         """(private) write the new state to the I2C bus.
         """
         self._i2c.write_byte(self._i2c_addr, self._state)
@@ -37,7 +38,7 @@ class I2CRelayBoard:
     def is_on(self, relay_number):
         """Return true if the relay is switched on.
         """
-        return not(self._state >> relay_number-1) & 1
+        return not(self._state >> relay_number - 1) & 1
 
     def switch_all_off(self):
         """Switch all realys off.
@@ -56,7 +57,7 @@ class I2CRelayBoard:
            TODO: make sure that relay_number is valid
         """
         # set the relay_number-th bit to 0
-        self._state &= ~(1 << relay_number-1)
+        self._state &= ~(1 << relay_number - 1)
         self._commit_state()
 
     def switch_off(self, relay_number):
@@ -64,7 +65,7 @@ class I2CRelayBoard:
            TODO: make sure that relay_number is valid
         """
         # set the relay_number-th bit to 1
-        self._state |= (1 << relay_number-1)
+        self._state |= (1 << relay_number - 1)
         self._commit_state()
 
     def toggle(self, relay_number):

@@ -29,25 +29,25 @@ I2C_ADDR = 0x20
 if __name__ == "__main__":
 
     try:
-        r1 = I2CRelayBoard(I2C_BUS, I2C_ADDR)
+        relay1 = I2CRelayBoard(I2C_BUS, I2C_ADDR)
 
-        r1.switch_all_off()
+        relay1.switch_all_off()
         time.sleep(1.0)
 
-        r1.switch_all_on()
+        relay1.switch_all_on()
         time.sleep(1.0)
 
-        r1.switch_all_off()
+        relay1.switch_all_off()
         time.sleep(1.0)
 
-	for i in range(0, 10):
+        for i in range(0, 10):
             for relay in range(1, 9):
                 print("Switching relay {}".format(relay))
-                r1.switch_on(relay)
+                relay1.switch_on(relay)
                 time.sleep(0.1)
-                r1.switch_off(relay)
+                relay1.switch_off(relay)
                 time.sleep(0.1)
 
     except KeyboardInterrupt:
         print("Execution stopped by user")
-        r1.switch_all_off()
+        relay1.switch_all_off()

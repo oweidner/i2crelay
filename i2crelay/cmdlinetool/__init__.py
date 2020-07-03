@@ -6,7 +6,7 @@
 #
 # <https://codewerft.net>
 #
-# Copyright (c) 2017 Codewerft UG (haftungsbeschränkt) 
+# Copyright (c) 2017 Codewerft UG (haftungsbeschränkt)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,10 +17,11 @@ from i2crelay import I2CRelayBoard
 
 import click
 
+
 @click.command()
-@click.option('--i2c-bus',  required=True, type=int, help='The I2C bus (0 or 1)')
-@click.option('--i2c-addr',  required=True, type=str, help='The I2C device address, e.g. 0x20')
-@click.argument('cmds',      nargs=-1)
+@click.option('--i2c-bus', required=True, type=int, help='The I2C bus (0 or 1)')
+@click.option('--i2c-addr', required=True, type=str, help='The I2C device address, e.g. 0x20')
+@click.argument('cmds', nargs=-1)
 def main(i2c_bus, i2c_addr, cmds):
     """Control a PCF8574 I2C relay board.
     """
@@ -29,39 +30,39 @@ def main(i2c_bus, i2c_addr, cmds):
     i2c_addr = int(i2c_addr, 16)
 
     # Parse the command string
-    for c in cmds:
-        validate_command(c)
+    for cmd in cmds:
+        validate_command(cmd)
 
     try:
-        r1 = I2CRelayBoard(i2c_bus, i2c_addr)
+        relay1 = I2CRelayBoard(i2c_bus, i2c_addr)
 
-        for c in cmds:
-            n,o = c.split(":")
-            if o.lower() == "on":
-                r1.switch_on(int(n))
-            elif o.lower() == "off":
-                r1.switch_off(int(n))
-            elif o.lower() == "toggle":
-                r1.toggle(int(n))
+        for cmd in cmds:
+            number, operation = cmd.split(":")
+            if operation.lower() == "on":
+                relay1.switch_on(int(number))
+            elif operation.lower() == "off":
+                relay1.switch_off(int(number))
+            elif operation.lower() == "toggle":
+                relay1.toggle(int(number))
 
     except KeyboardInterrupt:
         print("Execution stopped by user")
-        r1.switch_all_off()
+        relay1.switch_all_off()
 
 
-def validate_command(c):
-    n = None
-    o = None
+def validate_command(cmd):
+    number = None
+    operation = None
 
     try:
         # split realy number and operation
-        n,o = c.split(":")
+        number, operation = cmd.split(":")
         # convert realy number to integer
-        n = int(n)
-    except:
-        raise TypeError("Invalid command: %s", c)
+        number = int(number)
+    except TypeError:
+        raise TypeError("Invalid command: %s", cmd)
 
-    if type(n) != int:
-        raise TypeError("Invalid command: %s", c)
-    if o.lower() not in ['on', 'off', 'toggle']:
-        raise TypeError("Invalid command: %s", c)
+    if isinstance(number) != int:
+        raise TypeError("Invalid command: %s", cmd)
+    if operation.lower() not in ['on', 'off', 'toggle']:
+        raise TypeError("Invalid command: %s", cmd)
