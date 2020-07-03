@@ -17,15 +17,15 @@
 #   ===============
 #
 #   1. Install Python Flask:
-#   pip install Flask
+#   pip3 install Flask
 #
 #   2. Run the server
-#   python relay_server.py
+#   python3 rest_api.py
 #
 #   3. Call the API
 #   Toggle a relay:
 #   curl -H "Content-Type: application/json" -X PUT \
-#        -d '{"state":"toggle"}' localhost:5000/api/relay/1
+#        -d '{"state":"toggle"}' http://localhost:5000/api/relay/1
 
 from flask import Flask, jsonify, request, g, abort
 from i2crelay import I2CRelayBoard

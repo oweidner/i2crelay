@@ -13,8 +13,9 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 
-from i2crelay import I2CRelayBoard
 import time
+from i2crelay import I2CRelayBoard
+
 
 # Define I2C bus type
 # 0: Raspberry Pi Model B Rev 1.0
@@ -27,6 +28,8 @@ I2C_BUS = 1
 I2C_ADDR = 0x20
 
 if __name__ == "__main__":
+
+    print("Press CTRL+C to abort")
 
     try:
         relay1 = I2CRelayBoard(I2C_BUS, I2C_ADDR)
@@ -41,6 +44,7 @@ if __name__ == "__main__":
         time.sleep(1.0)
 
         for i in range(0, 10):
+            print("Loop {}/10".format(i + 1))
             for relay in range(1, 9):
                 print("Switching relay {}".format(relay))
                 relay1.switch_on(relay)

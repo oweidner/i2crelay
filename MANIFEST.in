@@ -7,3 +7,6 @@ recursive-include data *
 include tox.ini
 recursive-include examples *.py
 recursive-include tests *.py
+
+# for pyenv
+include .python-version

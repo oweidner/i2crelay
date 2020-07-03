@@ -62,7 +62,8 @@ def validate_command(cmd):
     except TypeError:
         raise TypeError("Invalid command: %s", cmd)
 
-    if isinstance(number) != int:
+    if not isinstance(number, int):
         raise TypeError("Invalid command: %s", cmd)
+
     if operation.lower() not in ['on', 'off', 'toggle']:
         raise TypeError("Invalid command: %s", cmd)
