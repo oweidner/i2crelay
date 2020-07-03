@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Creation:    06.06.2017
-# Last Update: 23.07.2017
+# Last Update: 03.07.2020
 #
 # <https://codewerft.net>
 #
@@ -20,7 +20,7 @@ from i2crelay import I2CRelayBoard
 # Define I2C bus type
 # 0: Raspberry Pi Model B Rev 1.0
 # 1: Raspberry Pi Model B Rev 2.0, Model A, Model B+, Model A+,
-#    Raspberry Pi 2 Model B and  Raspberry Pi 3 Model B
+#    Raspberry Pi 2 Model B and  Raspberry Pi 3 Model B, Pi Zero (W)
 I2C_BUS = 1
 
 # Define I2C address of PCF8574 8-Bit I/O expander -
